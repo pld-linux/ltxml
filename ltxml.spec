@@ -1,4 +1,5 @@
 Summary:	LT XML toolkit
+Summary(pl):	Zestaw narzêdzi LT XML
 Name:		ltxml
 Version:	1.2.5
 Release:	1
@@ -21,12 +22,27 @@ The basic architecture is one in which XML and nSGML documents can be
 piped through any tools built using our API for augmentation,
 extraction, etc.
 
+%description -l pl
+Ten pakiet zawiera wersjê 1.2 zestawu narzêdzi i API LT XML,
+zawieraj±c± wszystko co potrzeba do przetwarzania szerokiego
+zakresu dobrze sformu³owanych dokumentów XML, a tak¿e dobrze
+unormowanych dokumentów SGML wyprodukowanych przez zestaw narzêdzi LT
+NSL.
+
+Podstawowa architektura jest taka, w której dokumenty XML i nSGML mog±
+byæ przepuszczane przez dowolne narzêdzia zbudowane przy u¿yciu tego
+API do powiêkszania, wyci±gania itp.
+
 %package devel
 Summary:	LT XML API libraries and header files
+Summary(pl):	Pliki nag³ówkowe i biblioteki API LT XML
 Group:		Development/Libraries
 
 %description devel
 LT XML API libraries and header files.
+
+%description devel -l pl
+Pliki nag³ówkowe i biblioteki API LT XML.
 
 %prep
 %setup -q -n %{name}-%{version}/XML
