@@ -5,6 +5,7 @@ Release:	1
 License:	GPL
 Group:		Applications/Text
 Source0:	ftp://ftp.cogsci.ed.ac.uk/pub/LTXML/%{name}-%{version}.tar.gz
+# Source0-md5:	7aa37556dc9b532013c3bf9698e7d630
 Patch1:		%{name}-CFLAGS.patch
 URL:		http://www.ltg.ed.ac.uk/software/xml/
 BuildRequires:	zlib-devel
