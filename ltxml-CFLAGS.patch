@@ -1,0 +1,19 @@
+diff -durN ltxml-1.2.5.orig/XML/configure.in ltxml-1.2.5/XML/configure.in
+--- ltxml-1.2.5.orig/XML/configure.in	Mon Jul 19 17:23:40 1999
++++ ltxml-1.2.5/XML/configure.in	Tue May 20 12:47:36 2003
+@@ -68,15 +68,6 @@
+   CXXFLAGS=
+ fi
+ 
+-if test "$GCC"
+- then
+-  WARN="-Wall -Wwrite-strings -Wpointer-arith -Wnested-externs -Wbad-function-cast"
+-  CFLAGS=-O2
+- else
+-  WARN=
+-  CFLAGS=
+-fi
+-
+ AC_LANG_C
+ 
+ dnl Sun CC needs special Makefile.lib stuff
