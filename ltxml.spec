@@ -2,7 +2,7 @@ Summary:	LT XML toolkit
 Summary(pl):	Zestaw narzêdzi LT XML
 Name:		ltxml
 Version:	1.2.5
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Text
 Source0:	ftp://ftp.cogsci.ed.ac.uk/pub/LTXML/%{name}-%{version}.tar.gz
@@ -10,6 +10,7 @@ Source0:	ftp://ftp.cogsci.ed.ac.uk/pub/LTXML/%{name}-%{version}.tar.gz
 Patch1:		%{name}-CFLAGS.patch
 URL:		http://www.ltg.ed.ac.uk/software/xml/
 BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -50,6 +51,7 @@ Pliki nag³ówkowe i biblioteki API LT XML.
 %patch1 -p2
 
 %build
+install %{_datadir}/automake/config.* .
 %{__autoconf}
 %configure \
 	--enable-multi-byte
