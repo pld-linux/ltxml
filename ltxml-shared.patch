@@ -1,0 +1,148 @@
+--- ltxml-1.2.5/XML/src/api/Makefile.in.orig	1999-04-08 18:04:59.000000000 +0200
++++ ltxml-1.2.5/XML/src/api/Makefile.in	2005-12-26 00:07:44.000000000 +0100
+@@ -14,10 +14,11 @@
+ 
+ NDEFINES = -DXML_ERRORS
+ 
+-LTOBJS = sgmllib.o select.o $(link.o) \
+-	 sgmloutput.o sgmlparse.o query.o \
+-	 sgmlfiles.o dtdaccess.o readddb.o \
+-	 xmlparser.o dtd.o input.o namespaces.o
++LTOBJS = sgmllib.lo select.lo $(link.lo) \
++	 sgmloutput.lo sgmlparse.lo query.lo \
++	 sgmlfiles.lo dtdaccess.lo readddb.lo \
++	 xmlparser.lo dtd.lo input.lo namespaces.lo
++LTLIBS = ../std/libltstd.la
+ 
+ # note this is public headers only
+ XMLHDRS = nsl-defs.h nsl-err.h nsl-errmsg.h nsl.h nslfunc.h hsregexp.h
+@@ -27,12 +28,12 @@
+ 
+ LTLIB = ltapi
+ 
+-all: libltapi.a
++all: libltapi.la
+ 
+ install: install_ltlib install_lthdrs
+ 
+ include ../Makefile.sub
+ include $(srcdir)/Makefile.dep
+ 
+-%.o: $(RXPDIR)/src/%.c
+-	$(CC) $(ALL_CFLAGS) $(INCLUDES) -c $< -o $@
++%.lo: $(RXPDIR)/src/%.c
++	libtool --mode=compile $(CC) $(ALL_CFLAGS) $(INCLUDES) -c $< -o $@
+--- ltxml-1.2.5/XML/src/appl/Makefile.in.orig	1999-06-08 20:07:37.000000000 +0200
++++ ltxml-1.2.5/XML/src/appl/Makefile.in	2005-12-26 00:13:45.000000000 +0100
+@@ -21,9 +21,9 @@
+ 
+ NDEFINES = -DXML_ERRORS
+ 
+-NLIBS= -L../api -L../std -lltapi -lltstd @LIBS@
++NLIBS= ../api/libltapi.la ../std/libltstd.la @LIBS@
+ 
+-CLIBDEPS=../api/libltapi.a ../std/libltstd.a
++CLIBDEPS=../api/libltapi.la ../std/libltstd.la
+ 
+ MBOBJS = sgmltoken.o
+ 
+@@ -63,7 +63,7 @@
+ 
+ install_bin: FORCE
+ 	if test ! -d $(bindir); then mkdir -p $(bindir); fi
+-	for f in $(PROGS); do $(INSTALL) $$f $(bindir); done
++	for f in $(PROGS); do libtool --mode=install $(INSTALL) $$f $(bindir); done
+ 
+ install_script: sgmlseg
+ 	$(INSTALL) sgmlseg $(bindir)
+@@ -77,20 +77,20 @@
+ 	else echo "src/appl/Makefile: no perl, so didn't build 'sgmlseg'"; fi
+ 
+ sgrpg: sgrpg.o sgpatrd.o $(CLIBDEPS)
+-	$(CC) $(LDFLAGS) sgrpg.o sgpatrd.o $(NLIBS) $(LIBS) \
++	libtool --mode=link $(CC) $(LDFLAGS) sgrpg.o sgpatrd.o $(NLIBS) $(LIBS) \
+ 	-o $@
+ 
+ pesis: sgmls.o $(CLIBDEPS)
+-	$(CC) $(LDFLAGS) sgmls.o $(NLIBS) $(LIBS) -o $@
++	libtool --mode=link $(CC) $(LDFLAGS) sgmls.o $(NLIBS) $(LIBS) -o $@
+ 
+ xmlnorm: parse.o $(CLIBDEPS)
+-	$(CC) $(LDFLAGS) parse.o $(NLIBS) $(LIBS) -o $@
++	libtool --mode=link $(CC) $(LDFLAGS) parse.o $(NLIBS) $(LIBS) -o $@
+ 
+ intersect: intersect.o $(CLIBDEPS)
+-	$(CC) $(LDFLAGS) intersect.o $(NLIBS) $(LIBS) -lm -o $@
++	libtool --mode=link $(CC) $(LDFLAGS) intersect.o $(NLIBS) $(LIBS) -lm -o $@
+ 
+ %:	%.o $(CLIBDEPS)
+-	$(CC) $(LDFLAGS) $@.o $(NLIBS) $(LIBS) -o $@
++	libtool --mode=link $(CC) $(LDFLAGS) $@.o $(NLIBS) $(LIBS) -o $@
+ 
+ include ../Makefile.sub
+ include $(srcdir)/Makefile.dep
+--- ltxml-1.2.5/XML/src/std/Makefile.in.orig	2001-05-01 16:25:46.000000000 +0200
++++ ltxml-1.2.5/XML/src/std/Makefile.in	2005-12-26 00:10:10.000000000 +0100
+@@ -15,10 +15,11 @@
+ 
+ # Added map-safe.o, as it is used by token; and err.o
+ 
+-LTOBJS = memory.o lt-safe.o sstring.o hash.o \
+-         regexp.o regsub.o umalloc.o file.o \
+-         env.o token.o map-safe.o err.o rhash.o url.o \
+-	 charset.o ctype16.o string16.o stdio16.o http.o
++LTOBJS = memory.lo lt-safe.lo sstring.lo hash.lo \
++         regexp.lo regsub.lo umalloc.lo file.lo \
++         env.lo token.lo map-safe.lo err.lo rhash.lo url.lo \
++	 charset.lo ctype16.lo string16.lo stdio16.lo http.lo
++LTLIBS=-lz
+ 
+ # note this is public hdrs only, not a full list
+ XMLHDRS = lt-comment.h lt-defs.h lt-err.h lt-errmsg.h \
+@@ -32,12 +33,12 @@
+ 
+ LTLIB = ltstd
+ 
+-all: libltstd.a
++all: libltstd.la
+ 
+ install: install_ltlib install_lthdrs
+ 
+ include ../Makefile.sub
+ include $(srcdir)/Makefile.dep
+ 
+-%.o: $(RXPDIR)/src/%.c
+-	$(CC) $(ALL_CFLAGS) $(INCLUDES) -c $< -o $@
++%.lo: $(RXPDIR)/src/%.c
++	libtool --mode=compile $(CC) $(ALL_CFLAGS) $(INCLUDES) -c $< -o $@
+--- ltxml-1.2.5/XML/src/Makefile.sub.in.orig	1998-10-15 15:32:19.000000000 +0200
++++ ltxml-1.2.5/XML/src/Makefile.sub.in	2005-12-26 00:12:56.000000000 +0100
+@@ -64,20 +64,21 @@
+ 
+-install_lib$(LTLIB): $(libdir)/lib$(LTLIB)$(VERSUF).a
++install_lib$(LTLIB): $(libdir)/lib$(LTLIB).la
+ 
+-lib$(LTLIB).a: $(LTOBJS)
+-	ar rv lib$(LTLIB).a $?
+-	$(RANLIB) lib$(LTLIB).a
++lib$(LTLIB).la: $(LTOBJS)
++	libtool --mode=link $(CC) -o lib$(LTLIB).la -rpath $(libdir) $(LTLIBS) $?
+ 
+-$(libdir)/%$(VERSUF).a: %.a
++$(libdir)/%.la: %.la
+ 	if test ! -d $(libdir); then mkdir -p $(libdir); fi
+-	cp $< $@
+-	$(RANLIB) $@
++	libtool --mode=install install $< $@
+ 
+ ALL_CFLAGS=$(CFLAGS) $(WARN) $(LTCFLAGS) $(NDEFINES) $(LTNDEFINES) $(XDEFINES)
+ 
+ %.o: $(srcdir)/%.c
+ 	$(CC) $(ALL_CFLAGS) $(INCLUDES) -c $< -o $@
+ 
++%.lo: $(srcdir)/%.c
++	libtool --mode=compile $(CC) $(ALL_CFLAGS) $(INCLUDES) -c $< -o $@
++
+ clean: FORCE
+ 	- rm -f *.o *.a 2>/dev/null
+ 	if test "$(PROGS)"; then rm -f $(PROGS) sgmlseg 2>/dev/null; fi
