@@ -1,0 +1,19 @@
+--- ltxml-1.2.5/XML/configure.in.orig	2005-12-25 23:59:57.000000000 +0100
++++ ltxml-1.2.5/XML/configure.in	2005-12-26 00:15:27.000000000 +0100
+@@ -186,14 +186,12 @@
+   then
+    zp=$ac_default_prefix
+   fi
+-  CPPFLAGS="$CPPFLAGS -I$zp/include -L$zp/lib"
+-  AC_CHECK_LIB(z,main,LIBS="$LIBS -L$ZPREF/lib -lz"
++  CPPFLAGS="$CPPFLAGS -I$zp/include"
++  AC_CHECK_LIB(z,main,LIBS="$LIBS -lz"
+ 		      INCLS="-I$ZPREF/include"
+                       AC_DEFINE(HAVE_LIBZ),
+ 		      AC_MSG_WARN([***Couldn't find libz.a***]))
+ fi
+-AC_CHECK_LIB(nsl,main,LIBS="$LIBS -lnsl")
+-AC_CHECK_LIB(socket,main,LIBS="$LIBS -lsocket")
+ 
+ NVERSION=`cat $srcdir/00VERSION`
+ VERSUF=`sed 's/^\([[0-9]]*\)\.\([[0-9]]*\).*$/\1\2/' < $srcdir/00VERSION`
