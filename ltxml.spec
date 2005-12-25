@@ -47,10 +47,11 @@ LT XML API libraries and header files.
 Pliki nag³ówkowe i biblioteki API LT XML.
 
 %prep
-%setup -q -n %{name}-%{version}/XML
-%patch1 -p2
+%setup -q -n %{name}-%{version}
+%patch1 -p1
 
 %build
+cd XML
 install %{_datadir}/automake/config.* .
 %{__autoconf}
 %configure \
@@ -60,7 +61,7 @@ install %{_datadir}/automake/config.* .
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
+%{__make} -C XML install \
 	prefix=$RPM_BUILD_ROOT%{_prefix} \
 	exec_prefix=$RPM_BUILD_ROOT%{_prefix} \
 	libdir=$RPM_BUILD_ROOT%{_libdir} \
@@ -72,10 +73,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ../00README ../00COPYRIGHT
-%doc doc/{*.gif,*.html,*.c}
+%doc 00README 00COPYRIGHT XML/doc/{*.gif,*.html,*.c}
 %attr(755,root,root) %{_bindir}/*
-%{_libdir}/%{name}*
+%{_prefix}/lib/%{name}*
 %{_mandir}/*/*
 
 %files devel
