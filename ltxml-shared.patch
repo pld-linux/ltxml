@@ -12,7 +12,7 @@
 +	 sgmloutput.lo sgmlparse.lo query.lo \
 +	 sgmlfiles.lo dtdaccess.lo readddb.lo \
 +	 xmlparser.lo dtd.lo input.lo namespaces.lo
-+LTLIBS = ../std/libltstd.la
++LTLIBS = ../std/libltstd12.la
  
  # note this is public headers only
  XMLHDRS = nsl-defs.h nsl-err.h nsl-errmsg.h nsl.h nslfunc.h hsregexp.h
@@ -21,7 +21,7 @@
  LTLIB = ltapi
  
 -all: libltapi.a
-+all: libltapi.la
++all: libltapi12.la
  
  install: install_ltlib install_lthdrs
  
@@ -39,10 +39,10 @@
  NDEFINES = -DXML_ERRORS
  
 -NLIBS= -L../api -L../std -lltapi -lltstd @LIBS@
-+NLIBS= ../api/libltapi.la ../std/libltstd.la @LIBS@
++NLIBS= ../api/libltapi12.la ../std/libltstd12.la @LIBS@
  
 -CLIBDEPS=../api/libltapi.a ../std/libltstd.a
-+CLIBDEPS=../api/libltapi.la ../std/libltstd.la
++CLIBDEPS=../api/libltapi12.la ../std/libltstd12.la
  
  MBOBJS = sgmltoken.o
  
@@ -104,7 +104,7 @@
  LTLIB = ltstd
  
 -all: libltstd.a
-+all: libltstd.la
++all: libltstd12.la
  
  install: install_ltlib install_lthdrs
  
@@ -120,13 +120,13 @@
 @@ -64,20 +64,21 @@
  
 -install_lib$(LTLIB): $(libdir)/lib$(LTLIB)$(VERSUF).a
-+install_lib$(LTLIB): $(libdir)/lib$(LTLIB).la
++install_lib$(LTLIB): $(libdir)/lib$(LTLIB)$(VERSUF).la
  
 -lib$(LTLIB).a: $(LTOBJS)
 -	ar rv lib$(LTLIB).a $?
 -	$(RANLIB) lib$(LTLIB).a
-+lib$(LTLIB).la: $(LTOBJS)
-+	libtool --mode=link $(CC) -o lib$(LTLIB).la -rpath $(libdir) $(LTLIBS) $?
++lib$(LTLIB)$(VERSUF).la: $(LTOBJS)
++	libtool --mode=link $(CC) -o lib$(LTLIB)$(VERSUF).la -rpath $(libdir) $(LTLIBS) $?
  
 -$(libdir)/%$(VERSUF).a: %.a
 +$(libdir)/%.la: %.la
