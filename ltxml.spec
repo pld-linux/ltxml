@@ -2,7 +2,7 @@ Summary:	LT XML toolkit
 Summary(pl):	Zestaw narzêdzi LT XML
 Name:		ltxml
 Version:	1.2.5
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Text
 Source0:	ftp://ftp.cogsci.ed.ac.uk/pub/LTXML/%{name}-%{version}.tar.gz
