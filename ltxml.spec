@@ -1,5 +1,5 @@
 Summary:	LT XML toolkit
-Summary(pl):	Zestaw narzêdzi LT XML
+Summary(pl.UTF-8):   Zestaw narzÄ™dzi LT XML
 Name:		ltxml
 Version:	1.2.5
 Release:	3
@@ -27,39 +27,39 @@ The basic architecture is one in which XML and nSGML documents can be
 piped through any tools built using our API for augmentation,
 extraction, etc.
 
-%description -l pl
-Ten pakiet zawiera wersjê 1.2 zestawu narzêdzi i API LT XML,
-zawieraj±c± wszystko co potrzeba do przetwarzania szerokiego
-zakresu dobrze sformu³owanych dokumentów XML, a tak¿e dobrze
-unormowanych dokumentów SGML wyprodukowanych przez zestaw narzêdzi LT
+%description -l pl.UTF-8
+Ten pakiet zawiera wersjÄ™ 1.2 zestawu narzÄ™dzi i API LT XML,
+zawierajÄ…cÄ… wszystko co potrzeba do przetwarzania szerokiego
+zakresu dobrze sformuÅ‚owanych dokumentÃ³w XML, a takÅ¼e dobrze
+unormowanych dokumentÃ³w SGML wyprodukowanych przez zestaw narzÄ™dzi LT
 NSL.
 
-Podstawowa architektura jest taka, w której dokumenty XML i nSGML mog±
-byæ przepuszczane przez dowolne narzêdzia zbudowane przy u¿yciu tego
-API do powiêkszania, wyci±gania itp.
+Podstawowa architektura jest taka, w ktÃ³rej dokumenty XML i nSGML mogÄ…
+byÄ‡ przepuszczane przez dowolne narzÄ™dzia zbudowane przy uÅ¼yciu tego
+API do powiÄ™kszania, wyciÄ…gania itp.
 
 %package devel
 Summary:	LT XML API libraries and header files
-Summary(pl):	Pliki nag³ówkowe i biblioteki API LT XML
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe i biblioteki API LT XML
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 LT XML API libraries and header files.
 
-%description devel -l pl
-Pliki nag³ówkowe i biblioteki API LT XML.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe i biblioteki API LT XML.
 
 %package static
 Summary:	Static LT XML libraries
-Summary(pl):	Statyczne biblioteki LT XML
+Summary(pl.UTF-8):   Statyczne biblioteki LT XML
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static LT XML libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczne biblioteki LT XML.
 
 %prep
