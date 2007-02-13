@@ -1,5 +1,5 @@
 Summary:	LT XML toolkit
-Summary(pl.UTF-8):   Zestaw narzędzi LT XML
+Summary(pl.UTF-8):	Zestaw narzędzi LT XML
 Name:		ltxml
 Version:	1.2.5
 Release:	3
@@ -40,7 +40,7 @@ API do powiększania, wyciągania itp.
 
 %package devel
 Summary:	LT XML API libraries and header files
-Summary(pl.UTF-8):   Pliki nagłówkowe i biblioteki API LT XML
+Summary(pl.UTF-8):	Pliki nagłówkowe i biblioteki API LT XML
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -52,7 +52,7 @@ Pliki nagłówkowe i biblioteki API LT XML.
 
 %package static
 Summary:	Static LT XML libraries
-Summary(pl.UTF-8):   Statyczne biblioteki LT XML
+Summary(pl.UTF-8):	Statyczne biblioteki LT XML
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
